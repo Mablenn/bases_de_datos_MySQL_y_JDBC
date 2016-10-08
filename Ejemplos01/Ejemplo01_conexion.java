@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Esta clase muestra de forma sencilla como establecer una conexión a una base de datos
  * Utilizando clases o interfaces que forman parte del API JDBC
  * se puede realizar esta operación, Antes que nada debemos añadir el .jar
@@ -29,25 +29,25 @@ public class Ejemplo01_conexion {
     public static void main (String args[]){
         Connection cn = null;
         try{
+            //---  PASO 1 ---//
+            
             //Carga del driver en momoria
             Class.forName("com.mysql.jdbc.Driver");
-            //Crear un objeto Connection y le asignamos el valor 
-            //del método getConnection de la clase DriverManager
+            //Establecer la conexión con la BBDD
             cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejemploDB", "root", "rootpwd");
             if(cn!=null){
               System.out.println("Conexión establecida con la base de datos");
             }
+            
+            //---  PASO 2 ---//
+            
+            //Cierre de la conexión
             cn.close();
         } catch (SQLException e){
             System.out.println("Error en la consexion con la base de datos " + e.getMessage()); 
         } catch (ClassNotFoundException e){
             System.out.println("Error en la carga del driver: " + e.getMessage());
-        }//fin try-catch
+        } 
+        
     } //Fin main
 }//Fin clase
-/*
-    Pasos:
-    1 - Cargar el driver en memoria
-    2 - Establecer conexión
-    3 - Cerrar conexión
-*/
